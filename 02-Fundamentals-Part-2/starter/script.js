@@ -30,3 +30,36 @@ console.log(appleJuice);
 
 const appleOrangeJuice = juiceMaker(3, 3);
 console.log(appleOrangeJuice);
+
+
+// function declaration 
+// the function which can be called before you actually declare it
+function calAge1(birthYear) {
+    return 2020 - birthYear;
+}
+
+const calAge2 = function (birthYear) {
+    return 2020 - birthYear;
+}
+
+// function expression
+// which cannot be called before the expression
+const age1 = calAge1(1992);
+console.log(age1);
+
+const age2 = calAge2(1992);
+console.log(age2);
+
+// Arrow function: another function expression
+// the arrow function cannot call "this" keywoord 
+const calAge3 = birthYear => 2020 - birthYear;
+const age3 = calAge3(1992);
+console.log(age3);
+
+const yearOfRetirement = (name, birthYear) => {
+    const age = 2020 - birthYear;
+    return `${name} retires in ${65 - age}`;
+}
+
+console.log(yearOfRetirement("Joe", 1992));
+

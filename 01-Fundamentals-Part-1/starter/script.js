@@ -88,3 +88,20 @@
 // console.log(Boolean('Joe')); //T
 // console.log(Boolean({})); //T
 // console.log(Boolean('')); //F
+
+// const age = 20;
+
+// if (age === 18) {
+//     console.log("20");
+// } else {
+//     console.log("You are not 18");
+// }
+
+// if (age == '20') {
+//     console.log("20");
+// } else {
+//     console.log("it's a string");
+// }
+
+// const num = prompt("Enter a number: ");
+// console.log(typeof num, num);

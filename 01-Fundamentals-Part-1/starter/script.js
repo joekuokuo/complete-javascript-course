@@ -111,10 +111,22 @@
 // }
 
 
-const hasFun = true;
-const isBad = false;
-const res = hasFun && isBad;
-console.log(hasFun && isBad); // true
-console.log(hasFun || isBad); // false
+// const hasFun = true;
+// const isBad = false;
+// const res = hasFun && isBad;
+// console.log(hasFun && isBad); // true
+// console.log(hasFun || isBad); // false
 
+const day = 'Mon'
 
+switch (day) {
+    case 'Mon':
+        console.log("It's Monday");
+        break
+    case 'Tue':
+    case 'Wed':
+        console.log("It's a good day to write some code");
+        break
+    default:
+        console.log("Not a valid day");
+}

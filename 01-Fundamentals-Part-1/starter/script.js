@@ -80,4 +80,11 @@
 // console.log('23' > '19'); // triggers coercion
 
 
+// ======================================
+// 5 falsy values: 0, '', undefined, null, NaN
 
+// console.log(Boolean(0)); //F
+// console.log(Boolean(undefined)); //F
+// console.log(Boolean('Joe')); //T
+// console.log(Boolean({})); //T
+// console.log(Boolean('')); //F

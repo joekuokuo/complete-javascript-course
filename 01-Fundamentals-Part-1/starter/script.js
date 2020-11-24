@@ -103,5 +103,9 @@
 //     console.log("it's a string");
 // }
 
-// const num = prompt("Enter a number: ");
-// console.log(typeof num, num);
+const num = prompt("Enter a number: ");
+console.log(typeof num, num);
+
+if (num !== "23") {
+    console.log("It's not 23");
+}

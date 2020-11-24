@@ -117,16 +117,25 @@
 // console.log(hasFun && isBad); // true
 // console.log(hasFun || isBad); // false
 
-const day = 'Mon'
+// const day = 'Mon'
 
-switch (day) {
-    case 'Mon':
-        console.log("It's Monday");
-        break
-    case 'Tue':
-    case 'Wed':
-        console.log("It's a good day to write some code");
-        break
-    default:
-        console.log("Not a valid day");
-}
+// switch (day) {
+//     case 'Mon':
+//         console.log("It's Monday");
+//         break
+//     case 'Tue':
+//     case 'Wed':
+//         console.log("It's a good day to write some code");
+//         break
+//     default:
+//         console.log("Not a valid day");
+// }
+
+const age = 22;
+// age > 20 ? console.log("I like wine") : console.log("I like water");
+
+const drink = age > 20 ? "wine" : "water";
+console.log(drink);
+
+// age > 20 ? "wine" : "water" // This is an expression
+console.log(`I like to drink ${age > 20 ? "wine" : "water"}`)

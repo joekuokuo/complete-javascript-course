@@ -10,3 +10,36 @@ console.log(year);
 
 // year = [123, 321] // illegal
 
+
+// Array method
+
+// Add elements
+// push
+const newLen = friends.push("Jay"); // add an item in the end of the array and return the length of the array
+console.log(friends);
+console.log(newLen);
+
+//unshift
+friends.unshift("Lion"); // add an item in the front of the array and return the length of the array
+console.log(friends);
+
+
+// Remove the elements
+// pop
+const popped = friends.pop(); // remove an item in the end of the array and return its value
+console.log(friends);
+console.log(popped);
+
+// shift
+const poppedTheFront = friends.shift(); // remove an item in the front of the array and return its value
+console.log(friends);
+console.log(poppedTheFront);
+
+//indexOf
+console.log(friends.indexOf("Joe"));
+console.log(friends.indexOf("Jerry"));
+
+// includes
+// test with strict equality
+console.log(friends.includes("Joe"));
+console.log(friends.includes("Jerry"));

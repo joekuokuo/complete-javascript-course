@@ -43,3 +43,13 @@ console.log(friends.indexOf("Jerry"));
 // test with strict equality
 console.log(friends.includes("Joe"));
 console.log(friends.includes("Jerry"));
+
+// Objects
+const Joe = {
+    firstName: "Joe",
+    lastName: "Kuo",
+    age: 2020 - 1992,
+    job: "student"
+};
+
+console.log(Joe);

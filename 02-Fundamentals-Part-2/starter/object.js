@@ -33,3 +33,36 @@ Joe.location = "US";
 Joe['Facebook'] = "Joekobekuo";
 console.log(Joe);
 console.log(Joe.location);
+
+const John = {
+    firstName: "John",
+    lastName: "Lin",
+    birthday: 1990,
+    job: "teacher",
+    friends: ["Joe", "Ken", "Mike"],
+    hasMoney: true,
+
+    // calAge: function (birthday) {
+    //     return 2020 - birthday;
+    // },
+
+    // calAge: function () {
+    //     console.log(this);
+    //     return 2020 - this.birthday;
+    // },
+    calAge: function () {
+        this.age = 2020 - this.birthday
+        return this.age;
+    },
+
+    getSummary: function () {
+        return `${this.firstName} is a ${this.calAge()} years old ${this.job}, and ${this.hasMoney ? "has" : "has no"} money.`
+    }
+}
+
+console.log(John.calAge());
+console.log(John.age);
+console.log(John.age);
+console.log(John.age);
+
+console.log(John.getSummary())

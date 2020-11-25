@@ -25,3 +25,13 @@ for (let i = 0; i < friends.length; i++) {
     // types[i] = typeof friends[i];
     console.log(typeof friends[i]);
 }
+
+
+for (let i = 1; i <= 10; i++) {
+    console.log(`Count: ` + i);
+}
+let i = 1;
+while (i <= 10) {
+    console.log(`Count: ` + i);
+    i++;
+}

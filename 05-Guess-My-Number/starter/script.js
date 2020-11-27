@@ -35,7 +35,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').textContent = secreteNum;
 
     // The attribute in the style should be in camel case style.
-    document.querySelector('body').style.backgroundColor = '#60b347'; // the color should be specified in a string
+    document.querySelector('body').style.backgroundColor = 'rgb(204, 30, 181)'; //'#60b347'; // the color should be specified in a string
 
     // Also try to change the width of the class="number".
     document.querySelector('.number').style.width = '40rem';
@@ -82,7 +82,7 @@ document.querySelector('.check').addEventListener('click', function () {
 document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('.number').textContent = '?';
   document.querySelector('.number').style.width = '15rem';
-  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('body').style.backgroundColor = 'rgb(19, 48, 177)';
   //   document.querySelector('.message').textContent = 'Start guessing...';
   displayMessage('Start guessing...');
 

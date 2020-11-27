@@ -22,8 +22,16 @@ document.querySelector('.check').addEventListener('click', function () {
   // To make sure there is a number for the input
   if (!guess) {
     document.querySelector('.message').textContent = 'No number!';
+
+    // When the player wins
   } else if (guess === secreteNum) {
     document.querySelector('.message').textContent = 'Correct Number :)';
+
+    // The attribute in the style should be in camel case style.
+    document.querySelector('body').style.backgroundColor = '#60b347'; // the color should be specified in a string
+
+    // Also try to change the width of the class="number".
+    document.querySelector('.number').style.width = '40rem';
   } else if (guess > secreteNum) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'The guess is too high';

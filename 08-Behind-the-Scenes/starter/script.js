@@ -75,4 +75,39 @@ let y = 2;
 const z = 1;
 
 */
-console.log(this);
+// console.log(this);
+
+const calAge = function (b) {
+  console.log(2020 - b);
+  console.log(this); // return undefined
+};
+
+calAge(1999);
+
+const calAgeArr = b => {
+  console.log(2020 - b);
+  console.log(this); // return Window using its parent's this
+};
+
+calAgeArr(1999);
+
+const Joe = {
+  year: 1993,
+  calAge: function () {
+    console.log(this);
+    console.log(2020 - this.year);
+  },
+};
+
+Joe.calAge();
+
+const amy = {
+  year: 1999,
+};
+
+amy.calAge = Joe.calAge;
+amy.calAge();
+
+// Proof that the this keyword in the function can be undefined, thus the this.year doesn't exist that raise an error.
+const f = Joe.calAge;
+f();

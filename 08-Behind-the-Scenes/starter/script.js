@@ -33,6 +33,7 @@ console.log(calAge(1993));
 
 */
 
+/*
 // Variables
 console.log(me); // var is hoisted
 // console.log(job); // job is still in the Temperal dead zone
@@ -72,3 +73,6 @@ function delShoppingCart() {
 var x = 10;
 let y = 2;
 const z = 1;
+
+*/
+console.log(this);

@@ -114,15 +114,65 @@ const f = Joe.calAge;
 f();
 */
 
+var firstName = 'Alice'; // create a global property in the Window.
+
 const Joe = {
   firstName: 'Joe',
   year: 1993,
   calAge: function () {
     console.log(this);
     console.log(2020 - this.year);
+
+    // Solution 1 for pre ES6
+    const self = this; // or use that
+    const isMillenial = function () {
+      console.log(self);
+      console.log(self.year >= 1981 && self.year <= 1996); // Now it's working
+      // console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    // Solution 2
+    // Using an arrow function the this keyword will inherit from the parent scope
+    const notMillenial = () => {
+      console.log(this);
+      console.log(!(this.year >= 1981 && this.year <= 1996)); // Now it's working
+    };
+
+    // this keyword is called from a undefined, so there raise an error
+    // this.year == undefined.year which is the error.
+    isMillenial();
+    notMillenial();
   },
 
-  greet: () => console.log(`Hey ${this.firstName}`),
+  // This will cause error
+  // greet: () => console.log(`Hey ${this.firstName}`),
+  // NEVER use this keyword in the arrow function.
+
+  // This is the correct version
+  // The methid get its own this keyword
+  greet: function () {
+    console.log(`Hey ${this.firstName}`);
+  },
 };
 
 Joe.greet(); // this.firstName is undefined. this keyword is now the global obect which is the Window itself for this case.
+// this.firstName now pointed to "Alice" because we can create a global attribute by using var
+// To avoid this kind of error
+Joe.calAge();
+
+// argument keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+
+addExpr(1, 2);
+addExpr(1, 2, 3, 4);
+
+const addArr = (a, b) => {
+  // the argument keyword is not defined in the arrow function
+  // console.log(arguments);
+  return a + b;
+};
+
+addArr(1, 2);

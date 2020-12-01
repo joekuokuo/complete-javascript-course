@@ -114,6 +114,7 @@ const f = Joe.calAge;
 f();
 */
 
+/*
 var firstName = 'Alice'; // create a global property in the Window.
 
 const Joe = {
@@ -155,9 +156,9 @@ const Joe = {
   },
 };
 
-Joe.greet(); // this.firstName is undefined. this keyword is now the global obect which is the Window itself for this case.
+Joe.greet(); // this.firstName is undefined. "this" keyword is now the global obect which is the Window itself for this case.
 // this.firstName now pointed to "Alice" because we can create a global attribute by using var
-// To avoid this kind of error
+
 Joe.calAge();
 
 // argument keyword
@@ -176,3 +177,28 @@ const addArr = (a, b) => {
 };
 
 addArr(1, 2);
+
+*/
+
+// Lec 99 Primitive type and Reference type
+
+// Primitve type
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+// Reference
+const me = {
+  name: 'Joe',
+  age: '20',
+};
+const emily = me;
+emily.age = 23;
+console.log(me); // changes as well
+console.log(emily);
+
+me.age = 30;
+console.log(me);
+console.log(emily); // changes as well

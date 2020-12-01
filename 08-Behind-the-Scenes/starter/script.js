@@ -180,6 +180,7 @@ addArr(1, 2);
 
 */
 
+/*
 // Lec 99 Primitive type and Reference type
 
 // Primitve type
@@ -202,3 +203,47 @@ console.log(emily);
 me.age = 30;
 console.log(me);
 console.log(emily); // changes as well
+
+*/
+
+// Lec 100 Primitive type and Reference type in practice
+// Primitive type (String)
+let lastName = 'Kuo';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName); // Davis
+console.log(oldLastName); // Kuo
+
+// Reference type
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 28,
+};
+
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marry', jessica);
+console.log('After marry', marriedJessica);
+
+// marriedJessica = {}; // marriedJessica is declared in const so this action will actually create a new object and a new memory in the heap for marriedJessica which is not allowed
+
+// Copying objects
+
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 28,
+  family: ['Alice', 'Joe'],
+};
+
+// Object.assign is only a shallow copy which is not a deep copy
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+
+// Both items are pushed in the family array
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('Ellen');
+
+console.log('Before marry', jessica2);
+console.log('After marry', jessicaCopy);

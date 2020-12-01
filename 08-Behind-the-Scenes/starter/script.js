@@ -77,6 +77,7 @@ const z = 1;
 */
 // console.log(this);
 
+/*
 const calAge = function (b) {
   console.log(2020 - b);
   console.log(this); // return undefined
@@ -111,3 +112,17 @@ amy.calAge();
 // Proof that the this keyword in the function can be undefined, thus the this.year doesn't exist that raise an error.
 const f = Joe.calAge;
 f();
+*/
+
+const Joe = {
+  firstName: 'Joe',
+  year: 1993,
+  calAge: function () {
+    console.log(this);
+    console.log(2020 - this.year);
+  },
+
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
+
+Joe.greet(); // this.firstName is undefined. this keyword is now the global obect which is the Window itself for this case.

@@ -52,8 +52,55 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your pasta with ${ing1}, ${ing2}, and ${ing3}`);
   },
+
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(mainIng);
+    console.log(otherIng);
+  },
 };
 
+// 1) Destructure
+// Spread, because ... is on the right
+const arr = [1, 2, ...[3, 4]];
+console.log(arr);
+
+// Rest, because ... is on the left
+const [a, b, ...c] = [1, 2, 3, 4];
+console.log(a, b, c);
+const [pizza, , risotto, ...others] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, others); // others is other items in behind, not including the skip item
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+// 2) Functions
+const add = function (...nums) {
+  // Rest argument
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(2, 3, 4, 5);
+add(1, 3, 5, 6, 7, 8);
+
+const x = [1, 2, 12];
+add(...x);
+
+restaurant.orderPizza('chicken', 'spinach', 'cheese', 'onion');
+// mainIng = chicken
+// otherIng = ['spinach', 'cheese', 'onion']
+
+// Spread operator: can unpack an array into seperate values
+// ======================================================
+/*
 const arr = [3, 4, 5];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 console.log(badNewArr);
@@ -104,6 +151,7 @@ console.log(restaurant.name);
 restaurantCopy.mainMenu.push('Apple');
 console.log(restaurantCopy.mainMenu);
 console.log(restaurant.mainMenu);
+*/
 
 /*
 // Call the function B

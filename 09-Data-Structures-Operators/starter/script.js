@@ -48,8 +48,64 @@ const restaurant = {
   // orderDelivery: function (obj) {
   //   console.log(obj);
   // },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2}, and ${ing3}`);
+  },
 };
 
+const arr = [3, 4, 5];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+// ES6+ using spread operator
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+// To create a new array
+const newMenu = [...restaurant.mainMenu, 'hamburger'];
+console.log(newMenu);
+
+// Copy array (shallow)
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join 2 menu
+const fullMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(fullMenu);
+
+//Iterables: arrays, strings, maps, sets, but NOT object
+const str = 'John';
+const letters = [...str, ' ', 'M.'];
+console.log(letters);
+console.log(...str);
+// console.log(`${...str} Kuo`); // ${} is not expecting to receive multiple values
+// The spread operator is mostly used in passing values into function and array copy
+
+// Real world examples
+const ingredients = [
+  // prompt(`Let's make pasta! Ingredient 1?`),
+  // prompt(`Ingredient2?`),
+  // prompt(`Ingredient3?`),
+  // prompt(`Ingredient4?`), // this will not be catched in the function since it only accept 3 items
+];
+console.log(ingredients);
+restaurant.orderPasta(...ingredients);
+
+// Objects
+// object is now supported in ES2018
+const newRestaurant = { foundIn: 1900, ...restaurant, founder: ' Joe' };
+console.log(newRestaurant);
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'ABC Rest';
+console.log(restaurantCopy.name); // changed
+console.log(restaurant.name);
+
+// 2 inner array are both been added apple since this copy method is still just a shallow copy
+restaurantCopy.mainMenu.push('Apple');
+console.log(restaurantCopy.mainMenu);
+console.log(restaurant.mainMenu);
+
+/*
 // Call the function B
 restaurant.orderDelivery({
   time: '12:00',
@@ -88,6 +144,7 @@ const {
   fri: { open, close },
 } = restaurant.openingHours;
 console.log(open, close);
+*/
 
 /*
 ===================================================

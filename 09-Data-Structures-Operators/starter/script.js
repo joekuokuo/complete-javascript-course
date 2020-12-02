@@ -59,6 +59,98 @@ const restaurant = {
   },
 };
 
+// Coding challenge #1
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 1)
+// const players1 = game.players[0];
+// const players2 = game.players[1];
+
+const [players1, players2] = game.players;
+console.log(players1);
+console.log(players2);
+
+// 2)
+const [gk, ...fieldPlayers] = players1;
+console.log(gk);
+console.log(fieldPlayers);
+
+// 3)
+const allplayers = [...players1, ...players2];
+console.log(allplayers);
+
+// 4)
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
+
+// 5)
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+// const { team1, x: draw, team2 } = game.odds;
+console.log(team1, draw, team2);
+
+// 6)
+const printGoals = function (...players) {
+  console.log(`${players.length} goals were scored.`);
+  console.log(players);
+  // let score = 0;
+  // for (let i = 0; i < players.length; i++) {
+  //   console.log(players[i]);
+  //   score++;
+  // }
+  // console.log(score);
+};
+
+printGoals('Davies', 'Muller');
+printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+printGoals(...game.scored);
+
+// 7)
+team1 < team2 && console.log(`Team 1 is more likely to win!`);
+team1 > team2 && console.log(`Team 2 is more likely to win!`);
+
+/*
+/////////////////////////////////////////////////
 // Logical operator
 // Use any data type, return ANY data type,
 // short-circuiting
@@ -97,7 +189,7 @@ console.log(guest); // print 10
 // Nullish operator: null and undefined (NOT 0 nor "")
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect); // print 0 since 0 is not a nullish value
-
+*/
 /*
 ////////////////////////////////////////////////
 // Rest and Spread 

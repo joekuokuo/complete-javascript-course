@@ -59,6 +59,48 @@ const restaurant = {
   },
 };
 
+// Logical operator
+// Use any data type, return ANY data type,
+// short-circuiting
+console.log('-------OR---------');
+console.log(3 || 'Joe'); // print 3
+console.log('' || 'Joe');
+console.log(true || 0);
+console.log(undefined || null); // return null, undefined is falsy value, so it's been short-circuited
+console.log(0 || undefined || 'Hi' || '' || 20 || null); // Hi is the first trusy value
+
+// tenary method
+restaurant.numGuests = 20;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1); // print 10 since restaurant.numGuests is not defined yet
+
+// Using short-sircuiting
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+// Both method above won't work when restaurant.numGuest = 0
+
+console.log('-------AND---------');
+console.log(0 && 'Joe'); // print the first falsy value
+console.log(1 && 'Joe'); // print the second value since the first value is trusy
+console.log('Hi' && 'Joe' && 0 && '...');
+
+// Practice examples
+restaurant.orderPizza && restaurant.orderPizza('Chicken', 'Bacon'); // restaurant.orderPizza exists so the second part of the code will execute
+
+restaurant.orderHam && restaurant.orderHam('a'); // It will not do anything since the first part of the code is not executable
+
+// Nullish operator: ES2020+
+// In previous example
+restaurant.numGuests = 0;
+const guest = restaurant.numGuests || 10;
+console.log(guest); // print 10
+// Nullish operator: null and undefined (NOT 0 nor "")
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect); // print 0 since 0 is not a nullish value
+
+/*
+////////////////////////////////////////////////
+// Rest and Spread 
 // 1) Destructure
 // Spread, because ... is on the right
 const arr = [1, 2, ...[3, 4]];
@@ -95,6 +137,8 @@ const x = [1, 2, 12];
 add(...x);
 
 restaurant.orderPizza('chicken', 'spinach', 'cheese', 'onion');
+*/
+
 // mainIng = chicken
 // otherIng = ['spinach', 'cheese', 'onion']
 

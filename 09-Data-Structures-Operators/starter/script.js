@@ -101,6 +101,25 @@ const game = {
   },
 };
 
+// initial array
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// For of loop
+for (const itm of menu) console.log(itm);
+
+// for (const itm of menu.entries()) {
+//   console.log(`${itm[0] + 1}: ${itm[1]}`); // old school way
+// }
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`); // old school way
+}
+
+/*
+////////////////////////////////////////////////
+///////////// Coding Challenge 1 ///////////////
+////////////////////////////////////////////////
+
 // 1)
 // const players1 = game.players[0];
 // const players2 = game.players[1];
@@ -148,6 +167,7 @@ printGoals(...game.scored);
 // 7)
 team1 < team2 && console.log(`Team 1 is more likely to win!`);
 team1 > team2 && console.log(`Team 2 is more likely to win!`);
+*/
 
 /*
 /////////////////////////////////////////////////

@@ -107,8 +107,8 @@ console.log(entries);
 for (const [day, { open: openHour, close }] of entries) {
   console.log(`We open on ${day} at ${openHour} o'clock and close at ${close}`);
 }
-/*
 
+/*
 //////////////////////////////////////////////////
 ////////////// optional chaining /////////////////
 //////////////////////////////////////////////////
@@ -161,12 +161,6 @@ for (const [i, el] of menu.entries()) {
 }
 
 */
-
-/*
-////////////////////////////////////////////////
-///////////// Coding Challenge 1 ///////////////
-////////////////////////////////////////////////
-
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -207,6 +201,42 @@ const game = {
     team2: 6.5,
   },
 };
+
+////////////////////////////////////////////////
+///////////// Coding Challenge 2 ///////////////
+////////////////////////////////////////////////
+
+// 1)
+// let i = 1;
+// for (const player of game.scored) {
+//   console.log(`Goal ${i}: ${player}`);
+//   i++;
+// }
+
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`);
+}
+
+// 2)
+let sum = 0;
+const odds = Object.values(game.odds);
+for (const odd of odds) {
+  sum += odd;
+}
+console.log(sum / odds.length);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  // console.log(team, odd);
+  const teamStr = team == 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr}: ${odd}`);
+}
+
+/*
+////////////////////////////////////////////////
+///////////// Coding Challenge 1 ///////////////
+////////////////////////////////////////////////
+
+
 
 // 1)
 // const players1 = game.players[0];

@@ -86,6 +86,33 @@ const restaurant = {
   },
 };
 
+// Keys
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+console.log(`We are opening for ${properties.length} days. `);
+
+console.log();
+for (const day of properties) {
+  console.log(day);
+}
+
+// Values
+const values = Object.values(openingHours);
+console.log(values);
+
+// entries is used differently on object and array
+const entries = Object.entries(openingHours);
+console.log(entries);
+for (const [day, { open: openHour, close }] of entries) {
+  console.log(`We open on ${day} at ${openHour} o'clock and close at ${close}`);
+}
+/*
+
+//////////////////////////////////////////////////
+////////////// optional chaining /////////////////
+//////////////////////////////////////////////////
+
 // console.log(restaurant.order(1, 0));
 if (restaurant.openingHours && restaurant.openingHours.mon)
   console.log(restaurant.openingHours.mon.open);
@@ -112,6 +139,8 @@ console.log(restaurant.orderHam?.(0, 1) ?? 'Method not exist!'); // This print n
 const users = [{ name: 'Joe', email: 'ioqweiqwoie@gmail.com', age: 29 }];
 console.log(users[0]?.name ?? 'User array empty');
 console.log(users[1]?.name ?? "User doesn't exist");
+
+*/
 
 /*
 ////////////////////////////////////////////////

@@ -86,6 +86,51 @@ const restaurant = {
   },
 };
 
+// Map
+// Map can store key value pairs, but different from objects, map can store key value pairs which keys can be any type. Keys in object have to be string.
+
+const rest = new Map();
+
+// Map .set
+rest.set('name', 'McDonld');
+rest.set(1, 'Taipei');
+rest.set(2, 'Keelung');
+
+// console.log(rest.set(3, 'London'));
+rest
+  .set('categories', ['TW', 'JP', 'EN'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :)')
+  .set(false, 'We are closed :(');
+
+// Map .get
+console.log(rest.get('name'));
+console.log(rest.get('open'));
+console.log(rest.get(true)); // make sure to use the right type
+
+const time = 20;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close'))); // the usage of using boolean as map keys
+
+console.log(rest.has('categories')); // print true
+// Object also has "hasownproperty" function
+
+console.log(rest);
+rest.delete(2);
+// There is also a delete operator in the object but it's rather slow. Often not encourage to use
+// rest.clear(); // clear everything in the map
+
+//In order to retrieve the item using array as a key:
+const arr = [1, 2];
+console.log(rest.set(arr, 'test'));
+console.log(rest.get([1, 2])); // will return undefined since the 2 arrays are different in the heap memory, though they look the same in value
+console.log(rest.get(arr)); // print test! Success!
+console.log(rest);
+console.log(rest.size);
+
+// DOM manipuation using map
+rest.set(document.querySelector('h1'), 'Heading');
+/*
 // Set
 const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Bread', 'Pasta', 'Egg']);
 console.log(orderSet); // print {"Pasta", "Pizza", "Egg"}
@@ -110,8 +155,9 @@ const staffUni = [...new Set(staff)]; // convert the set into an array
 console.log(staffUni);
 console.log(new Set(staff).size); // print 3
 console.log(new Set('Jessica').size);
-/*
+*/
 
+/*
 // Keys
 const properties = Object.keys(openingHours);
 console.log(properties);

@@ -86,6 +86,38 @@ const restaurant = {
   },
 };
 
+const question = new Map([
+  ['question', `What's the best programming lanuage?`],
+  [1, 'C'],
+  [2, 'Jave'],
+  [3, 'JS'],
+  ['Correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again!'],
+]);
+
+// console.log(question);
+
+// Convert object to map
+const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+// Map iteration
+// console.log(question.get('question'));
+// Different from object, the map itself is iterable, while object is iterable only when calling Object.entries
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+// const ans = Number(prompt('Your answer'));
+const ans = 3;
+// console.log(question.get(ans === question.get('Correct')));
+
+// Convert map to array
+console.log([...question]);
+console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
+/*
 // Map
 // Map can store key value pairs, but different from objects, map can store key value pairs which keys can be any type. Keys in object have to be string.
 
@@ -130,6 +162,7 @@ console.log(rest.size);
 
 // DOM manipuation using map
 rest.set(document.querySelector('h1'), 'Heading');
+*/
 /*
 // Set
 const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Bread', 'Pasta', 'Egg']);

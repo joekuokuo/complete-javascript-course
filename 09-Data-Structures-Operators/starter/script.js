@@ -1,5 +1,22 @@
 'use strict';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// ES6 enhanced object literals
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -11,28 +28,38 @@ const restaurant = {
     return [this.starterMenu[starterIdx], this.mainMenu[mainIdx]];
   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  // Before ES6
+  // openingHours: openingHours,
+  openingHours, // new feature in ES6+
 
+  // openingHours: {
+  //   thu: {
+  //     open: 12,
+  //     close: 22,
+  //   },
+  //   fri: {
+  //     open: 11,
+  //     close: 23,
+  //   },
+  //   sat: {
+  //     open: 0, // Open 24 hours
+  //     close: 24,
+  //   },
+  // },
+
+  //////////////////////////
   // A
-  order: function (startIdx, mainIdx) {
+  // order: function (startIdx, mainIdx) {
+  //   return [this.starterMenu[startIdx], this.mainMenu[mainIdx]];
+  // },
+
+  // ES6+ new functions declaration way
+  order(startIdx, mainIdx) {
     return [this.starterMenu[startIdx], this.mainMenu[mainIdx]];
   },
 
   // B with default values
-  orderDelivery: function ({
+  orderDelivery({
     time = '00:00',
     address = 'XXXXXXXXX',
     mainIdx = 0,
@@ -49,17 +76,43 @@ const restaurant = {
   //   console.log(obj);
   // },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your pasta with ${ing1}, ${ing2}, and ${ing3}`);
   },
 
-  orderPizza: function (mainIng, ...otherIng) {
+  orderPizza(mainIng, ...otherIng) {
     console.log(mainIng);
     console.log(otherIng);
   },
 };
 
-// Coding challenge #1
+console.log(restaurant.order(1, 0));
+
+/*
+////////////////////////////////////////////////
+///////////////// For-of loop //////////////////
+////////////////////////////////////////////////
+// initial array
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// For of loop
+for (const itm of menu) console.log(itm);
+
+// for (const itm of menu.entries()) {
+//   console.log(`${itm[0] + 1}: ${itm[1]}`); // old school way
+// }
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`); // old school way
+}
+
+*/
+
+/*
+////////////////////////////////////////////////
+///////////// Coding Challenge 1 ///////////////
+////////////////////////////////////////////////
+
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -100,25 +153,6 @@ const game = {
     team2: 6.5,
   },
 };
-
-// initial array
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-
-// For of loop
-for (const itm of menu) console.log(itm);
-
-// for (const itm of menu.entries()) {
-//   console.log(`${itm[0] + 1}: ${itm[1]}`); // old school way
-// }
-
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`); // old school way
-}
-
-/*
-////////////////////////////////////////////////
-///////////// Coding Challenge 1 ///////////////
-////////////////////////////////////////////////
 
 // 1)
 // const players1 = game.players[0];

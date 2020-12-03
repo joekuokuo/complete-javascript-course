@@ -86,6 +86,32 @@ const restaurant = {
   },
 };
 
+// Set
+const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Bread', 'Pasta', 'Egg']);
+console.log(orderSet); // print {"Pasta", "Pizza", "Egg"}
+console.log(new Set('Joe')); // print("J", "o", "e")
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bread'));
+console.log(orderSet.has('Ham'));
+orderSet.add('Ham');
+orderSet.add('Cheese');
+orderSet.delete('Pasta'); // All the pasta is gone
+// orderSet.clear(); // Clean the set
+console.log(orderSet);
+// There is no way to retrieve items from the set using index
+for (const order of orderSet) {
+  console.log(order);
+}
+//Example
+const staff = ['Waiter', 'Chef', 'Chef', 'Manager', 'Waiter'];
+// const staffUni = new Set(staff);
+const staffUni = [...new Set(staff)]; // convert the set into an array
+console.log(staffUni);
+console.log(new Set(staff).size); // print 3
+console.log(new Set('Jessica').size);
+/*
+
 // Keys
 const properties = Object.keys(openingHours);
 console.log(properties);
@@ -107,6 +133,7 @@ console.log(entries);
 for (const [day, { open: openHour, close }] of entries) {
   console.log(`We open on ${day} at ${openHour} o'clock and close at ${close}`);
 }
+*/
 
 /*
 //////////////////////////////////////////////////
@@ -202,6 +229,7 @@ const game = {
   },
 };
 
+/*
 ////////////////////////////////////////////////
 ///////////// Coding Challenge 2 ///////////////
 ////////////////////////////////////////////////
@@ -225,11 +253,13 @@ for (const odd of odds) {
 }
 console.log(sum / odds.length);
 
+// 3)
 for (const [team, odd] of Object.entries(game.odds)) {
   // console.log(team, odd);
   const teamStr = team == 'x' ? 'draw' : `victory ${game[team]}`;
   console.log(`Odd of ${teamStr}: ${odd}`);
 }
+*/
 
 /*
 ////////////////////////////////////////////////

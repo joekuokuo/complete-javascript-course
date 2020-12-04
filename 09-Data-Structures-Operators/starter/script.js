@@ -85,7 +85,48 @@ const restaurant = {
     console.log(otherIng);
   },
 };
+// Strings
+const airline = 'AIR Taiwan';
+const plane = 'A320';
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B123'[0]);
 
+console.log(airline.indexOf('T')); // print 4
+console.log(airline.lastIndexOf('a')); // print 8
+console.log(airline.indexOf('taiwan')); // print -1
+
+console.log(airline.slice(4)); // begin with T
+console.log(airline.slice(4, 7)); // print Tai
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.indexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1)); // print IR Taiwa
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') {
+    console.log('You in the middle seat.');
+  } else {
+    console.log('You are lucky.');
+  }
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('11C');
+checkMiddleSeat('11E');
+
+// JS convert the string into an object when ever a string is passed into a function. After doing the operation on it, it will be converted back to a string type.
+
+console.log(new String('Joe'));
+console.log(typeof new String('haha'));
+console.log(typeof new String('haha').slice(-1));
+
+/*
+// Map .emtries, .keys, .values
 const question = new Map([
   ['question', `What's the best programming lanuage?`],
   [1, 'C'],
@@ -117,6 +158,8 @@ console.log([...question]);
 console.log(question.entries());
 console.log([...question.keys()]);
 console.log([...question.values()]);
+
+*/
 /*
 // Map
 // Map can store key value pairs, but different from objects, map can store key value pairs which keys can be any type. Keys in object have to be string.
@@ -268,9 +311,6 @@ for (const [i, el] of menu.entries()) {
 
 */
 
-////////////////////////////////////////////////
-///////////// Coding Challenge 3 ///////////////
-////////////////////////////////////////////////
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
   [36, '🔁 Substitution'],
@@ -284,6 +324,11 @@ const gameEvents = new Map([
   [80, '⚽️ GOAL'],
   [92, '🔶 Yellow card'],
 ]);
+
+/*
+////////////////////////////////////////////////
+///////////// Coding Challenge 3 ///////////////
+////////////////////////////////////////////////
 
 // 1)
 const events = [...new Set(gameEvents.values())];
@@ -348,6 +393,7 @@ const game = {
   },
 };
 
+*/
 /*
 ////////////////////////////////////////////////
 ///////////// Coding Challenge 2 ///////////////

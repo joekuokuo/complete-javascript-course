@@ -58,7 +58,7 @@ const restaurant = {
     return [this.starterMenu[startIdx], this.mainMenu[mainIdx]];
   },
 
-  // B with default values
+  // B with object with default values to pass in
   orderDelivery({
     time = '00:00',
     address = 'XXXXXXXXX',
@@ -267,6 +267,46 @@ for (const [i, el] of menu.entries()) {
 }
 
 */
+
+////////////////////////////////////////////////
+///////////// Coding Challenge 3 ///////////////
+////////////////////////////////////////////////
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// 1)
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2)
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3)
+// const time = [...gameEvents.keys()][gameEvents.size - 1]; // 92
+const time = [...gameEvents.keys()].pop(); // 92
+
+console.log(
+  `An event happened, on average, every ${time / (gameEvents.size - 1)} minutes`
+);
+// 4)
+for (const [time, ev] of gameEvents) {
+  // console.log(time, ev);
+  let half = time < 45 ? 'FIRST HALF' : 'SECOND HALF';
+  console.log(`[${half}] ${time}: ${ev}`);
+}
+
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -452,7 +492,7 @@ const [pizza, , risotto, ...others] = [
   ...restaurant.mainMenu,
   ...restaurant.starterMenu,
 ];
-console.log(pizza, risotto, others); // others is other items in behind, not including the skip item
+console.log(pizza, risotto, others); // others is the rest of the items in behind, not including the skip item
 
 // Objects
 const { sat, ...weekdays } = restaurant.openingHours;

@@ -85,6 +85,60 @@ const restaurant = {
     console.log(otherIng);
   },
 };
+// Strings part3
+// split and join
+console.log("I'm,a,nice,guy.".split(',')); // seperate the string by the limiter
+console.log('Joe Kuo.'.split(' ')); // seperate the string by the limiter
+const name = 'Tsung-Da Kuo';
+const [firstName, lastName] = name.split(' ');
+console.log(firstName, lastName);
+
+const proName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// Mr. Tsung-Da KUO
+
+console.log(proName);
+
+const capitalizationName = function (name) {
+  const names = name.split(' ');
+  const newName = [];
+  for (const n of names) {
+    // newName.push(n[0].toUpperCase() + n.slice(1).toLowerCase());
+    // Another way to capitalize the name
+    newName.push(n.toLowerCase().replace(n[0], n[0].toUpperCase()));
+  }
+  return newName.join(' ');
+};
+const passenger1 = 'jessica ann smith williams';
+const passenger2 = 'tsung dA kUO';
+
+console.log(capitalizationName(passenger1));
+console.log(capitalizationName(passenger2));
+
+// Padding
+const mes = 'Go to bed';
+console.log(mes.padStart(20, '=').padEnd(30, '=')); // the number mean to pad until this index
+console.log('Joe'.padStart(20, '+').padEnd(30, '+'));
+
+// credit card example
+const maskCreditCard = function (number) {
+  const str = number + ''; // when adding a empty string, the object will be convert to be a String automatically
+  // console.log(typeof str); // print String
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(123456789));
+console.log(maskCreditCard(1234567891234));
+
+// Repeat
+const mes2 = 'Hi, Joe...';
+console.log(mes2.repeat(3));
+
+// fun function
+const planeWaiting = function (n) {
+  console.log(`There are ${n} planes in line ${'=W='.repeat(n)}`);
+};
+planeWaiting(3);
 
 /*
 // Strings part1 and part2

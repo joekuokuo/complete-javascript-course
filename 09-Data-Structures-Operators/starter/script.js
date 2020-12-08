@@ -85,7 +85,9 @@ const restaurant = {
     console.log(otherIng);
   },
 };
-// Strings
+
+/*
+// Strings part1 and part2
 const airline = 'AIR Taiwan';
 const plane = 'A320';
 console.log(plane[0]);
@@ -124,6 +126,70 @@ checkMiddleSeat('11E');
 console.log(new String('Joe'));
 console.log(typeof new String('haha'));
 console.log(typeof new String('haha').slice(-1));
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = 'JOe'; // Joe
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passenger[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// Comparing email
+const email = 'hello@joe.com';
+const loginEmail = '   Hello@Joe.Com    \n';
+const lowerEmail = loginEmail.toLowerCase();
+console.log(lowerEmail);
+// trim the space
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail); // print hello@joe.com
+const normalizedEmail = loginEmail.toLowerCase().trim(); // delete the while spaces.
+console.log(normalizedEmail);
+console.log(normalizedEmail === email); // true
+
+// replacing
+const priceNTD = 'NTD29,99';
+const priceUS = priceNTD.replace('NTD', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 22, Boarding door 22!';
+console.log(announcement.replace('door', 'gate'));
+// to target all the door in the string, we need to use regluar expression
+// console.log(announcement.replaceAll('door', 'gate')); // working!!
+console.log(announcement.replace(/door/g, 'gate')); // working! g: global
+
+// Booleans
+const airplane = 'Apple B234app';
+console.log(airplane.includes('B234')); // true
+console.log(airplane.includes('app')); // true
+console.log(airplane.includes('B235')); // false
+console.log(airplane.startsWith('B23')); // true
+
+if (airplane.startsWith('Apple') && airplane.endsWith('app')) {
+  console.log('Part of apple family');
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (
+    baggage.includes('knife') ||
+    baggage.includes('gun') ||
+    baggage.includes('water')
+  ) {
+    console.log('You are not allow to be on board.');
+  } else {
+    console.log('You are welcome to be on board.');
+  }
+};
+
+checkBaggage('I have a Knife, a gun, some food.');
+checkBaggage('I have a banana, some water, some food.');
+checkBaggage('I have shoes, a ball, some bread.');
+checkBaggage('I have a camera, some snacks.');
+*/
 
 /*
 // Map .emtries, .keys, .values

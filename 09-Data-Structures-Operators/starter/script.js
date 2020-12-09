@@ -85,6 +85,67 @@ const restaurant = {
     console.log(otherIng);
   },
 };
+
+///////////////////////////////////////
+// Coding Challenge #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const rows = text.split('\n');
+
+//   for (const [i, row] of rows.entries()) {
+//     const [first, second] = row.toLowerCase().trim().split('_');
+
+//     const output = `${first}${second.replace(
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
+const convert = function (text) {
+  const str = text.split('_');
+
+  console.log(
+    str[0].toLowerCase() +
+      str[1]
+        .toLowerCase()
+        .replace(str[1][0].toLowerCase(), str[1][0].toUpperCase())
+  );
+};
+
+document.querySelector('button').addEventListener('click', function () {
+  const texts = document.querySelector('textarea').value.split('\n');
+  console.log(texts);
+  // let cnt = 1; // we use .entries() to replace this
+
+  for (const [i, text] of texts.entries()) {
+    const str = text.trim().split('_');
+
+    console.log(
+      (
+        str[0].toLowerCase() +
+        str[1]
+          .toLowerCase()
+          .replace(str[1][0].toLowerCase(), str[1][0].toUpperCase())
+      ).padEnd(20, ' ') + '✅'.repeat(i + 1) // padEnd(20) will work the same
+    );
+  }
+  // const str = text.split('_');
+
+  // console.log(
+  //   str[0].toLowerCase() +
+  //     str[1]
+  //       .toLowerCase()
+  //       .replace(str[1][0].toLowerCase(), str[1][0].toUpperCase())
+  // );
+});
+
+// convert('Some_Variable');
+/*
 // Strings part3
 // split and join
 console.log("I'm,a,nice,guy.".split(',')); // seperate the string by the limiter
@@ -139,6 +200,7 @@ const planeWaiting = function (n) {
   console.log(`There are ${n} planes in line ${'=W='.repeat(n)}`);
 };
 planeWaiting(3);
+*/
 
 /*
 // Strings part1 and part2

@@ -29,6 +29,7 @@ createBooking('L123', undefined, 400); // use undefined to skip parameters
 
 */
 
+/*
 // primitive and reference type
 const flight = 'A123';
 const joe = {
@@ -66,3 +67,42 @@ checkIn(flight, joe);
 // Note:
 // JavaScript do not have pass by reference only pass by value. This example randPassport(joe) is passing the value of the memory address
 // Like C++, you can pass by reference with even primitive data type, the any modification will affect outside the function
+
+*/
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+// console.log(oneWord('Joe Kuo')); // print(joekuo)
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  // return first.toUpperCase() + ' ' + others;
+  // console.log(first, others);
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// console.log(upperFirstWord('joe kuo wejkr')); // print JOE kuo
+
+// Higher-order function
+const transformer = function (str, fn) {
+  console.log(`Origin string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  // console.log(typeof fn(str));
+  console.log(`Transform function name: ${fn.name}`);
+};
+
+transformer('JavaScript is great', upperFirstWord); // upperFirstWord is the callback function and will be called later
+transformer('JavaScript is great', oneWord);
+
+const high5 = function () {
+  console.log('hi5');
+};
+
+// JS uses callbacks all the time
+// addEventListener is a higher order function
+document.body.addEventListener('click', high5);
+
+// forEach is also another higherorder function
+['a', 'b', 'c'].forEach(high5);

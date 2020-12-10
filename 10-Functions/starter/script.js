@@ -70,6 +70,7 @@ checkIn(flight, joe);
 
 */
 
+/*
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
@@ -106,3 +107,23 @@ document.body.addEventListener('click', high5);
 
 // forEach is also another higherorder function
 ['a', 'b', 'c'].forEach(high5);
+
+*/
+
+// Closure
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+// const greet = greeting => {
+//   return name => {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+const greeterHey = greet('Hey');
+greeterHey('May');
+greeterHey('Alex');
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArr('Hi')('Joe');

@@ -110,6 +110,7 @@ document.body.addEventListener('click', high5);
 
 */
 
+/*
 // Closure
 const greet = function (greeting) {
   return function (name) {
@@ -127,3 +128,49 @@ greeterHey('Alex');
 const greetArr = greeting => name => console.log(`${greeting} ${name}`);
 
 greetArr('Hi')('Joe');
+*/
+
+const chinaAir = {
+  airline: 'ChinaAir',
+  code: 'CH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.code}${flightNum}`
+    );
+    this.bookings.push({
+      flight: `${this.code}${flightNum}`,
+      name,
+    });
+  },
+};
+
+chinaAir.book(123, 'Joe Kuo');
+chinaAir.book(990, 'Ken Ning');
+console.log(chinaAir);
+
+const eurowings = {
+  name: 'Eurowings',
+  code: 'EW',
+  bookings: [],
+};
+
+const book = chinaAir.book;
+
+// book(123, 'K.Lin'); // this pointed tp undefined, so it raise an error
+
+// To fix this problem
+// Call method
+book.call(eurowings, 234, 'Sarah');
+// The call function explicitly make the first argument to be the this keyword
+console.log(eurowings);
+
+// Apply method
+// But not used in the modern JS anymore
+const data = [123, 'John Conner'];
+// book.apply(eurowings, data);
+// console.log(eurowings);
+
+// Now in modern JS
+book.call(eurowings, ...data);
+console.log(eurowings);

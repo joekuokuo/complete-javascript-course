@@ -150,7 +150,7 @@ chinaAir.book(990, 'Ken Ning');
 console.log(chinaAir);
 
 const eurowings = {
-  name: 'Eurowings',
+  airline: 'Eurowings', // the structure name need to be the same
   code: 'EW',
   bookings: [],
 };
@@ -161,6 +161,7 @@ const book = chinaAir.book;
 
 // To fix this problem
 // Call method
+// Will actually call the function
 book.call(eurowings, 234, 'Sarah');
 // The call function explicitly make the first argument to be the this keyword
 console.log(eurowings);
@@ -174,3 +175,53 @@ const data = [123, 'John Conner'];
 // Now in modern JS
 book.call(eurowings, ...data);
 console.log(eurowings);
+
+// bind menthod
+// bind the object to the method
+// book.call(eurowings, 234, 'Sarah');
+const bookEW = book.bind(eurowings);
+bookEW(999, 'Ken');
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Harry');
+bookEW23('Lion');
+
+// IMPORTANT EXAMPLE
+// With Event Listeners
+chinaAir.planes = 100;
+chinaAir.buyNewPlane = function () {
+  console.log(this); // print the button
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', chinaAir.buyNewPlane.bind(chinaAir)); // this keyword in chinaAir.buyNewPlane now pointed to the button itself
+// We need to use a bind method to explicitly assign this keyword to chinaAir
+
+// Partial application
+// To use the partial application the order of the arguments is important
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.2, 100));
+
+// Use BIND is to create a new function
+const addTaxWA = addTax.bind(null, 0.1); // We could use null to skip assigning the this keyword
+console.log(addTaxWA(200));
+
+// const addTaxWA2 = function (value) {
+//   return addTax(0.1, value);
+// };
+// console.log(addTaxWA2(100));
+
+// This is the same as the bind method
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const addTaxWA2 = addTaxRate(0.1);
+console.log(addTaxWA2(100));
+console.log(addTaxWA2(200));

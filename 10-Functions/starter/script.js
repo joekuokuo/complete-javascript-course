@@ -230,6 +230,7 @@ console.log(addTaxWA2(200));
 
 */
 
+/*
 // Coding challenge #1
 const poll = {
   question: 'What is your favourite programming language?',
@@ -277,9 +278,6 @@ const poll = {
 };
 // tests
 // poll.registerNewAnswer();
-// poll.registerNewAnswer();
-// poll.registerNewAnswer();
-// poll.registerNewAnswer();
 
 document
   .querySelector('.poll')
@@ -287,3 +285,25 @@ document
 
 // this keyword now pointed to the object pass into the call function
 poll.displayResults.call({ answers: [1, 2, 3, 8] }, 'string');
+*/
+
+// To run the function once and without storing it somewhere
+const runOnce = function () {
+  console.log('Used once');
+  const isPrivate = 20; // this varible cannot be access from the global
+};
+runOnce();
+// console.log(isPrivate); // Error occur
+// Immediate invoked function expression (pattern)
+(function () {
+  console.log('Used once');
+})();
+
+(() => console.log('Used once also'))();
+
+{
+  const isPrivate = 20;
+  var notPrivate = 21;
+}
+// console.log(isPrivate); // Still cause an error
+console.log(notPrivate); // This works fine

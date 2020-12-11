@@ -130,6 +130,8 @@ const greetArr = greeting => name => console.log(`${greeting} ${name}`);
 greetArr('Hi')('Joe');
 */
 
+/*
+// Call & Bind
 const chinaAir = {
   airline: 'ChinaAir',
   code: 'CH',
@@ -225,3 +227,63 @@ const addTaxRate = function (rate) {
 const addTaxWA2 = addTaxRate(0.1);
 console.log(addTaxWA2(100));
 console.log(addTaxWA2(200));
+
+*/
+
+// Coding challenge #1
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section 😃
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    // 1.1
+    // 0: JaveScript\n
+    // 1: Python\n
+    // 2: Rust\n
+    // 3: C++\n
+    let option = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}(Write option number)`
+      )
+    );
+    // console.log(typeof option);
+
+    // 1.2
+    // while (option < 0 || option > 4) {
+    //   option = prompt(`Answer again with a number`);
+    // }
+    // if (option >= 0 && option < 4) {
+    //   this.answers[option]++;
+    // }
+    // Use short circuiting
+    typeof option === 'number' &&
+      option >= 0 &&
+      option < this.answers.length &&
+      this.answers[option]++;
+    // console.log(this.answers);
+    this.displayResults();
+
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      // console.log(`Poll results are ${this.answers}`);
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
+  },
+};
+// tests
+// poll.registerNewAnswer();
+// poll.registerNewAnswer();
+// poll.registerNewAnswer();
+// poll.registerNewAnswer();
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// this keyword now pointed to the object pass into the call function
+poll.displayResults.call({ answers: [1, 2, 3, 8] }, 'string');

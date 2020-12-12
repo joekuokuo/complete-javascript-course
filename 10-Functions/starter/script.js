@@ -317,7 +317,7 @@ console.log(notPrivate); // This works fine
 /////////////////////////////////////////////////////////
 /////////////////// Closure /////////////////////////////
 /////////////////////////////////////////////////////////
-
+/*
 const secureBooking = function () {
   let pplCnt = 0;
   return function () {
@@ -344,3 +344,44 @@ console.dir(booker); // to observe the closure. [[...]] this properties are not 
 
 // Intuition:
 // A closure gives a function access to all the variables of its parent function, even after that parent function was returned. The function keeps a reference to its outer scope, which preserves the scope chain throughout time.
+
+*/
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 10;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 123;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f(); // print 20. Closure happens, "a" variable is store in the backpack in the f function
+console.dir(f);
+
+// Reassigning f funstion
+h();
+f();
+console.dir(f);
+
+// Example 2
+const boardingPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We are now boarding ${n} passengers.`);
+    console.log(`We have 3 groups, ${perGroup} people in each group.`);
+  }, wait * 1000); // This line will wait
+  console.log(`Will start boarding in ${wait} seconds.`); // This line will be executed right away
+};
+
+const perGroup = 1000; // This will not be used in the boardingPassengers function since closure has higher priority than the global scope
+boardingPassengers(90, 2);

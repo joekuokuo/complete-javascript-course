@@ -287,6 +287,7 @@ document
 poll.displayResults.call({ answers: [1, 2, 3, 8] }, 'string');
 */
 
+/*
 // To run the function once and without storing it somewhere
 const runOnce = function () {
   console.log('Used once');
@@ -294,7 +295,11 @@ const runOnce = function () {
 };
 runOnce();
 // console.log(isPrivate); // Error occur
-// Immediate invoked function expression (pattern)
+
+/////////////////////////////////////////////////////////
+//// Immediate invoked function expression (pattern) ////
+/////////////////////////////////////////////////////////
+
 (function () {
   console.log('Used once');
 })();
@@ -307,3 +312,35 @@ runOnce();
 }
 // console.log(isPrivate); // Still cause an error
 console.log(notPrivate); // This works fine
+*/
+
+/////////////////////////////////////////////////////////
+/////////////////// Closure /////////////////////////////
+/////////////////////////////////////////////////////////
+
+const secureBooking = function () {
+  let pplCnt = 0;
+  return function () {
+    pplCnt++;
+    console.log(`${pplCnt} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+console.dir(booker); // to observe the closure. [[...]] this properties are not accessible from outside
+
+// Note:
+// The secureBooking function is execured in the global scope and it should be gone, but the variable inside it is still be remembered by the booker function
+
+// IMPORTANT Note:
+// A function has access to the variable environment(VE) of the execution context in which it was created
+
+// Closure:
+// Description: VE attached to the function, exactly as it was at the time and place the function was created
+// Closure has priority over the scope chain. So even if there is a variable having the same name in the global scope, the variable in the closure will still be access first.
+
+// Intuition:
+// A closure gives a function access to all the variables of its parent function, even after that parent function was returned. The function keeps a reference to its outer scope, which preserves the scope chain throughout time.

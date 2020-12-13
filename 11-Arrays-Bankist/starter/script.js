@@ -71,8 +71,8 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
+/*
+// Simple array methods
 ///////////////// slice //////////////////////////////
 let arr = ['a', 'b', 'c', 'd', 'e'];
 console.log(arr.slice(2));
@@ -106,3 +106,40 @@ console.log([...arr, ...arr2]); // This get the same result
 
 ////////////////// Join ////////////////////////////
 console.log(arr3.join(' '));
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const move of movements) {
+
+for (const [idx, move] of movements.entries()) {
+  // To get the index of the array
+
+  if (move > 0) {
+    console.log(`Movement ${idx + 1}: Deposite ${move}`);
+  } else {
+    console.log(`Movement ${idx + 1}: Withdrew ${Math.abs(move)}`);
+  }
+}
+
+console.log('=======forEach=======');
+// movements.forEach(function (move) {
+movements.forEach(function (move, idx, arr) {
+  // forEach(callbackfn: (value: T, index: number, array: T[])
+  // To get the index
+
+  if (move > 0) {
+    console.log(`Movement ${idx + 1}: Deposite ${move}`);
+  } else {
+    console.log(`Movement ${idx + 1}: Withdrew ${Math.abs(move)}`);
+  }
+});
+
+// 0: function(200)
+// 1: function(450)
+// 2: function(-400)
+// ...
+
+// Note:
+// The forEach loop cannot be "break"
+// The for of loop can use "break"

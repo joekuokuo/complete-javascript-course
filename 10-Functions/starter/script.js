@@ -231,7 +231,10 @@ console.log(addTaxWA2(200));
 */
 
 /*
-// Coding challenge #1
+//////////////////////////////////////////////////
+////////////// Coding challenge #1 ///////////////
+//////////////////////////////////////////////////
+
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -385,3 +388,22 @@ const boardingPassengers = function (n, wait) {
 
 const perGroup = 1000; // This will not be used in the boardingPassengers function since closure has higher priority than the global scope
 boardingPassengers(90, 2);
+
+//////////////////////////////////////////////////
+////////////// Coding challenge #2 ///////////////
+//////////////////////////////////////////////////
+
+// debugger;
+// (function () {
+//   console.log('Hi');
+// })();
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+    console.log('CLICKED');
+  });
+})();

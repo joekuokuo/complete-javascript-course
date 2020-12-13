@@ -65,12 +65,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
 /*
 // Simple array methods
 ///////////////// slice //////////////////////////////
@@ -108,6 +102,9 @@ console.log([...arr, ...arr2]); // This get the same result
 console.log(arr3.join(' '));
 */
 
+/*
+//////////////////// forEach - Array /////////////////////
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const move of movements) {
@@ -143,3 +140,57 @@ movements.forEach(function (move, idx, arr) {
 // Note:
 // The forEach loop cannot be "break"
 // The for of loop can use "break"
+*/
+
+//////////////////// forEach - Map /////////////////////
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key) {
+  console.log(`${key}: ${value}`);
+});
+
+//////////////////// forEach - Set /////////////////////
+
+const currenciesSet = new Set(['USD', 'USD', 'EUR', 'GBP', 'EUR']);
+console.log(currenciesSet);
+
+currenciesSet.forEach(function (value, _, map) {
+  console.log(`${_}: ${value}`); // USD: USD
+});
+
+/*
+// Recap of Map
+// Map properties from MDN
+let wmp = new Map();
+wmp[1] = 'Joe';
+wmp[2] = 'Jack';
+wmp[3] = 'James';
+
+console.log(wmp);
+console.log(wmp.has(1)); // false!
+
+// Note:
+// Setting Object properties works for Map objects as well, and can cause considerable confusion. But that way of setting a property does not interact with the Map data structure. It uses the feature of the generic object. The value of 'bla' is not stored in the Map for queries. Other operations on the data fail:
+
+wmp.set('Joe', 100);
+console.log(wmp);
+console.log(wmp.has('Joe')); // true
+
+// Create a map from Array
+const arr = [
+  ['Alex', 90],
+  ['May', 80],
+  ['Ken', 100],
+];
+let newMap = new Map(arr);
+console.log(newMap);
+console.log(newMap.get('Alex')); // print 90
+console.log([...newMap]); // Convert a map back to an array
+console.log([...newMap.keys()]); // Convert keys of a map back to an array
+console.log([...newMap.values()]); // Convert values of a map back to an array
+*/

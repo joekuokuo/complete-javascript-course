@@ -73,4 +73,36 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/////////////////////////////////////////////////
+///////////////// slice //////////////////////////////
+let arr = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2));
+console.log(arr.slice(-1));
+// ====================================================
+console.log(arr.slice()); // To create a shalllow copy
+console.log([...arr]); // To create a shalllow copy
+// ====================================================
+
+///////////////// splice //////////////////////////////
+// The original array will be mutated
+console.log(arr.splice(3));
+// arr.splice(-1); // == arr.pop();
+console.log(arr); // a, b, c
+arr.splice(1, 2); // b, c are gone
+console.log(arr); // a is left
+
+////////////////// Reverse ////////////////////////////
+// The original array will be mutated
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['e', 'd', 'c', 'b', 'a'];
+console.log(arr2.reverse());
+console.log(arr2); // The original array are mutated
+
+////////////////// Concate ////////////////////////////
+const arr3 = arr.concat(arr2);
+console.log(arr3);
+console.log([...arr, ...arr2]); // This get the same result
+
+////////////////// Join ////////////////////////////
+console.log(arr3.join(' '));

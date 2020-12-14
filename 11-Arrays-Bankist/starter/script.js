@@ -91,6 +91,25 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+// Compute user name, using map method of array
+const user = 'Steven Thomas Williams'; // stw
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(name => name[0])
+//   .join('');
+// console.log(username);
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+console.log(createUsernames(accounts));
+console.log(accounts);
 /*
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 1 ////////////////
@@ -241,6 +260,7 @@ console.log([...newMap.keys()]); // Convert keys of a map back to an array
 console.log([...newMap.values()]); // Convert values of a map back to an array
 */
 
+/*
 // Map
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euro2USD = 1.1;
@@ -279,3 +299,4 @@ const movementsDes = movements.map(
 console.log(movementsDes);
 // Note:
 // the map method will call the callback function for each of the element in the array
+*/

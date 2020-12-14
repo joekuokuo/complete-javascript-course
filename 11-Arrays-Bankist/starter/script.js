@@ -91,6 +91,7 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+/*
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 1 ////////////////
 /////////////////////////////////////////////////
@@ -108,7 +109,7 @@ const checkDogs = function (arr1, arr2) {
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 // TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 // TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
-
+*/
 /////////////////////////////////////////////////
 // LECTURES
 /////////////////////////////////////////////////
@@ -173,7 +174,7 @@ movements.forEach(function (move, idx, arr) {
   // To get the index
 
   if (move > 0) {
-    console.log(`Movement ${idx + 1}: Deposite ${move}`);
+    console.log(`Movement ${idx + 1}: Deposit ${move}`);
   } else {
     console.log(`Movement ${idx + 1}: Withdrew ${Math.abs(move)}`);
   }
@@ -239,3 +240,42 @@ console.log([...newMap]); // Convert a map back to an array
 console.log([...newMap.keys()]); // Convert keys of a map back to an array
 console.log([...newMap.values()]); // Convert values of a map back to an array
 */
+
+// Map
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const euro2USD = 1.1;
+
+// functional programming
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * euro2USD;
+// });
+
+// simplfied with arrow function
+const movementsUSD = movements.map(mov => mov * euro2USD); // Arrow function is perfect for these small callback functions
+
+console.log(movements); // not mutated
+console.log(movementsUSD); // return a new array with the operation
+
+// Do the same thing in "for of loop"
+const movementsUSDArr = [];
+for (const move of movements) {
+  movementsUSDArr.push(move * euro2USD);
+}
+console.log(movementsUSDArr);
+
+const movementsDes = movements.map(
+  (move, i) =>
+    `Movement ${i + 1}: ${move > 0 ? 'Deposit' : 'Withdrew'} ${Math.abs(move)}`
+  // return move > 0
+  //   ? `Movement ${i + 1}: Deposit ${move}`
+  //   : `Movement ${i + 1}: Withdrew ${Math.abs(move)}`;
+  // if (move > 0) {
+  //   console.log(`Movement ${idx + 1}: Deposit ${move}`);
+  // } else {
+  //   console.log(`Movement ${idx + 1}: Withdrew ${Math.abs(move)}`);
+  // }
+);
+
+console.log(movementsDes);
+// Note:
+// the map method will call the callback function for each of the element in the array

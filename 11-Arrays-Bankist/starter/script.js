@@ -117,7 +117,25 @@ const createUsernames = function (accs) {
 };
 console.log(createUsernames(accounts));
 console.log(accounts);
+/////////////////////////////////////////////////
+///////////// Coding Challenge 2 ////////////////
+/////////////////////////////////////////////////
 
+const calAvgHumanAge = function (dogs) {
+  const dogAge = dogs
+    .map(function (age) {
+      return age <= 2 ? age * 2 : 16 + age * 4;
+    })
+    .filter(function (age) {
+      return age > 18;
+    })
+    .reduce(function (acc, cur, i, arr) {
+      return acc + cur / arr.length;
+    }, 0);
+  console.log(dogAge);
+};
+
+calAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
 /*
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 1 ////////////////
@@ -309,6 +327,7 @@ console.log(movementsDes);
 // the map method will call the callback function for each of the element in the array
 */
 
+/*
 // Array - Filter
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -353,3 +372,5 @@ const maxMovements = movements.reduce(function (acc, mov) {
   return acc > mov ? acc : mov;
 }, movements[0]);
 console.log(maxMovements);
+
+*/

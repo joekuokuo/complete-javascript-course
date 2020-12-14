@@ -90,9 +90,28 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
+///////////// Coding Challenge 1 ////////////////
+/////////////////////////////////////////////////
+
+const checkDogs = function (arr1, arr2) {
+  const newArr1 = arr1.slice(1, -2);
+  // console.log(newArr1); // shallow copy
+  // console.log(arr1); // not affected
+  const dogs = newArr1.concat(arr2);
+  dogs.forEach(function (val, i) {
+    const puppyOrAdult = val >= 3 ? 'adult' : 'puppy';
+    console.log(`Dog number ${i + 1} is a ${puppyOrAdult}`);
+  });
+};
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+// TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+
 /////////////////////////////////////////////////
 // LECTURES
+/////////////////////////////////////////////////
 
 /*
 // Simple array methods

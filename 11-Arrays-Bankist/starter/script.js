@@ -300,3 +300,26 @@ console.log(movementsDes);
 // Note:
 // the map method will call the callback function for each of the element in the array
 */
+
+// Array - Filter
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const depositsForOf = [];
+for (const mov of movements) if (mov > 0) depositsForOf.push(mov);
+console.log(depositsForOf); // same results
+
+// Note
+// The advantage of using a method instead of a for loop is that the the method can be chained together
+
+const withdrawals = movements.filter(function (mov) {
+  return mov < 0;
+});
+// Arrow function version
+// const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);

@@ -91,6 +91,13 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+// Calculate the current balance
+const calDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+calDisplayBalance(account1.movements);
+
 // Compute user name, using map method of array
 const user = 'Steven Thomas Williams'; // stw
 // const username = user
@@ -110,6 +117,7 @@ const createUsernames = function (accs) {
 };
 console.log(createUsernames(accounts));
 console.log(accounts);
+
 /*
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 1 ////////////////
@@ -323,3 +331,25 @@ const withdrawals = movements.filter(function (mov) {
 // Arrow function version
 // const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
+
+// Array - reduce
+// acc -> accumulator
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}.`);
+//   return acc + cur;
+// }, 0); // reduce method can specified an initial value. Without assigning the initial value, the operation will start at 0 automatically but the first index won't be shown
+
+const balance = movements.reduce((acc, mov) => acc + mov, 0);
+console.log(balance);
+
+// For loop
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximun value (Array - reduce)
+const maxMovements = movements.reduce(function (acc, mov) {
+  // console.log(acc);
+  return acc > mov ? acc : mov;
+}, movements[0]);
+console.log(maxMovements);

@@ -89,30 +89,30 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 // Calculate the current balance
 const calDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} €`;
 };
-calDisplayBalance(account1.movements);
+// calDisplayBalance(account1.movements);
 
-const calDisplaySummary = function (movements) {
-  const income = movements
+const calDisplaySummary = function (account) {
+  const income = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, cur) => acc + cur, 0);
   labelSumIn.textContent = `${income}€`;
 
-  const outcome = movements
+  const outcome = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, cur) => acc + cur);
   labelSumOut.textContent = `${Math.abs(outcome)}€`;
 
-  const interest = movements
+  const interest = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, cur) => {
-      const int = (cur * 1.2) / 100;
+      const int = (cur * account.interestRate) / 100;
       // console.log('Interest', int);
       return int >= 1 ? acc + int : acc;
     }, 0);
@@ -120,7 +120,7 @@ const calDisplaySummary = function (movements) {
   labelSumInterest.textContent = `${interest}€`;
 };
 
-calDisplaySummary(account1.movements);
+// calDisplaySummary(account1.movements);
 
 // Note (Chaining methods):
 // Do not over use the chaining method to avoid low performance.
@@ -145,6 +145,39 @@ const createUsernames = function (accs) {
 };
 console.log(createUsernames(accounts));
 console.log(accounts);
+
+// inputLoginUsername;
+let currentAcc;
+btnLogin.addEventListener('click', function (e) {
+  // To prevent the form from submitting
+  e.preventDefault();
+  // console.log('LOGIN');
+  currentAcc = accounts.find(acc => acc.username === inputLoginUsername.value);
+  console.log(currentAcc);
+
+  // if (currentAcc && currentAcc.pin === Number(inputLoginPin.value)) {
+  // using technique: optional chaining
+  if (currentAcc?.pin === Number(inputLoginPin.value)) {
+    // the value need to be convert to a number first
+    // display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAcc.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+
+    // clear the input field
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginUsername.blur();
+    inputLoginPin.blur();
+    // display movements
+    displayMovements(currentAcc.movements);
+    // display balance
+    calDisplayBalance(currentAcc.movements);
+    // display summary
+    calDisplaySummary(currentAcc);
+  }
+});
+
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 2 ////////////////
 /////////////////////////////////////////////////

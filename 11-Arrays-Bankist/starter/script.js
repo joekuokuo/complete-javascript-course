@@ -207,6 +207,26 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername?.value === currentAcc?.username &&
+    Number(inputClosePin?.value) === currentAcc.pin
+  ) {
+    // console.log('Close');
+    const idx = accounts.findIndex(acc => acc.username === currentAcc.username);
+    // return the first index of match item
+    // console.log(idx);
+
+    // Delete the account
+    accounts.splice(idx, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 2 ////////////////
 /////////////////////////////////////////////////

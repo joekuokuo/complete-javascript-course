@@ -98,6 +98,34 @@ const calDisplayBalance = function (movements) {
 };
 calDisplayBalance(account1.movements);
 
+const calDisplaySummary = function (movements) {
+  const income = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, cur) => acc + cur, 0);
+  labelSumIn.textContent = `${income}€`;
+
+  const outcome = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, cur) => acc + cur);
+  labelSumOut.textContent = `${Math.abs(outcome)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, cur) => {
+      const int = (cur * 1.2) / 100;
+      // console.log('Interest', int);
+      return int >= 1 ? acc + int : acc;
+    }, 0);
+  // acc + (cur * 1.2) / 100, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calDisplaySummary(account1.movements);
+
+// Note (Chaining methods):
+// Do not over use the chaining method to avoid low performance.
+// Try not to chain a method that can mutate the original array such as "splice"
+
 // Compute user name, using map method of array
 const user = 'Steven Thomas Williams'; // stw
 // const username = user
@@ -136,6 +164,7 @@ const calAvgHumanAge = function (dogs) {
 };
 
 calAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
+
 /*
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 1 ////////////////
@@ -374,3 +403,15 @@ const maxMovements = movements.reduce(function (acc, mov) {
 console.log(maxMovements);
 
 */
+
+// Chaining methods
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const euro2USD = 1.1;
+console.log(movements);
+
+// Pipeline
+const totalDepositUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * euro2USD)
+  .reduce((acc, cur) => acc + cur, 0);
+console.log(totalDepositUSD);

@@ -534,6 +534,7 @@ const account = accounts.find(acc => acc.owner === 'Sarah Smith');
 // }
 // console.log(account_1);
 
+/*
 console.log(movements);
 
 // equality
@@ -554,3 +555,33 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
+*/
+
+// ES2019
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat()); // remove the nested array, only go a level deep
+
+const arrDeep = [
+  [1, 2, 3],
+  [4, [5, 6]],
+  [7, [8]],
+];
+console.log(arrDeep.flat(2)); // remove the nested array, only go 2 levels deep
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+// const overallBalance = allMovements.reduce((acc, cur) => acc + cur);
+
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, cur) => acc + cur);
+console.log(overallBalance);
+
+// flatmap
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements) // flatMap will only go one lv deep
+  .reduce((acc, cur) => acc + cur);
+console.log(overallBalance);

@@ -404,6 +404,7 @@ console.log(maxMovements);
 
 */
 
+/*
 // Chaining methods
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euro2USD = 1.1;
@@ -415,3 +416,23 @@ const totalDepositUSD = movements
   .map(mov => mov * euro2USD)
   .reduce((acc, cur) => acc + cur, 0);
 console.log(totalDepositUSD);
+*/
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const firstWithdrawal = movements.find(mov => mov < 0); // only return the first one, and return the item
+console.log(firstWithdrawal);
+console.log(accounts);
+
+// return the object that match the certain property
+const account = accounts.find(acc => acc.owner === 'Sarah Smith');
+console.log(account);
+
+// Small challenge using for of to implement some features above
+// let account_1 = null;
+// for (const acc of accounts) {
+//   console.log(acc);
+//   if (acc.owner === 'Sarah Smith') {
+//     account_1 = acc;
+//   }
+// }
+// console.log(account_1);

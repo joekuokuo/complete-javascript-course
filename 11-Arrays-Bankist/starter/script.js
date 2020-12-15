@@ -92,9 +92,9 @@ const displayMovements = function (movements) {
 // displayMovements(account1.movements);
 
 // Calculate the current balance
-const calDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} €`;
+const calDisplayBalance = function (account) {
+  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${account.balance} €`;
 };
 // calDisplayBalance(account1.movements);
 
@@ -143,11 +143,21 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
-console.log(createUsernames(accounts));
-console.log(accounts);
+createUsernames(accounts);
+// console.log(accounts);
 
-// inputLoginUsername;
+// Define the current user account
 let currentAcc;
+
+const updateUI = function (acc) {
+  // display movements
+  displayMovements(acc.movements);
+  // display balance
+  calDisplayBalance(acc);
+  // display summary
+  calDisplaySummary(acc);
+};
+
 btnLogin.addEventListener('click', function (e) {
   // To prevent the form from submitting
   e.preventDefault();
@@ -169,12 +179,31 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginUsername.blur();
     inputLoginPin.blur();
-    // display movements
-    displayMovements(currentAcc.movements);
-    // display balance
-    calDisplayBalance(currentAcc.movements);
-    // display summary
-    calDisplaySummary(currentAcc);
+
+    // Update UI
+    updateUI(currentAcc);
+  }
+});
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault(); // preventing from reloading the page in form
+  const amount = Number(inputTransferAmount.value);
+  const receiver = accounts.find(acc => acc.username === inputTransferTo.value);
+  console.log(amount, receiver);
+
+  // Clear the input
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 &&
+    receiver && // still need this since the receiver needd to be existed
+    currentAcc.balance >= amount &&
+    receiver?.username !== currentAcc.username // this won't ensure the receiver is existed such as undefined !== "XXXX", and the transfer will still be valid
+  ) {
+    console.log('Transfer valid');
+    currentAcc.movements.push(-amount);
+    receiver.movements.push(amount);
+    updateUI(currentAcc);
   }
 });
 
@@ -196,7 +225,7 @@ const calAvgHumanAge = function (dogs) {
   console.log(dogAge);
 };
 
-calAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
 
 /*
 /////////////////////////////////////////////////
@@ -453,12 +482,12 @@ console.log(totalDepositUSD);
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const firstWithdrawal = movements.find(mov => mov < 0); // only return the first one, and return the item
-console.log(firstWithdrawal);
-console.log(accounts);
+// console.log(firstWithdrawal);
+// console.log(accounts);
 
 // return the object that match the certain property
 const account = accounts.find(acc => acc.owner === 'Sarah Smith');
-console.log(account);
+// console.log(account);
 
 // Small challenge using for of to implement some features above
 // let account_1 = null;

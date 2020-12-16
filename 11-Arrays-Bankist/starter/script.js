@@ -251,6 +251,77 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAcc.movements, !sorted);
   sorted = !sorted;
 });
+
+/////////////////////////////////////////////////
+///////////// Coding Challenge 4 ////////////////
+/////////////////////////////////////////////////
+
+console.log('====== Coding Challenge 4 =======');
+// TEST DATA:
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// Task 1
+dogs.forEach(function (dog) {
+  dog.recommendFood = Math.trunc(dog.weight ** 0.75 * 28);
+});
+// console.log(dogs);
+
+// Task 2
+// console.log(dogs.find(dog => dog.owners.includes('Sarah')));
+const findSaranDog = function (dogs) {
+  return dogs.find(dog => dog.owners.includes('Sarah'));
+};
+// console.log(findSaranDog(dogs));
+const dogSarah = findSaranDog(dogs);
+console.log(
+  `Sarah's dog is eating too ${
+    dogSarah.recommendFood - dogSarah.curFood > 0 ? 'little' : 'much'
+  }.`
+);
+
+// Task 3
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.recommendFood - dog.curFood < 0)
+  .flatMap(dog => dog.owners);
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.recommendFood - dog.curFood > 0)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooMuch);
+console.log(ownersEatTooLittle);
+
+console.log(dogs);
+
+// Task 4
+console.log(ownersEatTooMuch.join(' and ') + "'s dog eat too much.");
+console.log(ownersEatTooLittle.join(' and ') + "'s dog eat too little.");
+
+// Task 5
+console.log(dogs.some(dog => dog.recommendFood === dog.curFood));
+
+// Task 6
+const checkEatingOK = dog =>
+  dog.recommendFood * 0.9 < dog.curFood &&
+  dog.recommendFood * 1.1 > dog.curFood;
+
+console.log(dogs.some(checkEatingOK));
+
+// Task 7
+console.log(dogs.filter(checkEatingOK));
+
+// Tasl 8
+const copySortedDog = dogs
+  .slice() // need a copy
+  .sort((a, b) => a.recommendFood - b.recommendFood);
+console.log(copySortedDog);
+console.log(dogs);
+
+console.log('====== Coding Challenge 4 END=======');
+
 /////////////////////////////////////////////////
 ///////////// Coding Challenge 2 ////////////////
 /////////////////////////////////////////////////

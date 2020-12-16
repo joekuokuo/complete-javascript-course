@@ -632,3 +632,48 @@ console.log(movements);
 // });
 movements.sort((a, b) => b - a);
 console.log(movements);
+
+// Empty array + fill method
+// Creating and filling array
+const array = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+const x = new Array(7);
+console.log(x); // filled with empty
+
+// x.fill(1);
+x.fill(1, 3, 5);
+console.log(x);
+
+array.fill(22, 2, 6);
+console.log(array);
+
+// Array from - ES6
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementUI);
+
+  const movementUI2 = [
+    ...document.querySelectorAll('.movements__value'),
+  ].map(el => Number(el.textContent.replace('€', '')));
+  console.log(movementUI2);
+  // const movementUI = document.querySelectorAll('.movements__value'); // this is not a real array. It's a array like element:  Nodelist
+
+  // console.log(movementUI.map(el => el.textContent.replace('€', '')));
+});
+
+// Exercise
+const diseRoll_10 = Array.from(
+  { length: 10 },
+  () => Math.trunc(6 * Math.random()) + 1
+);
+console.log(diseRoll_10);

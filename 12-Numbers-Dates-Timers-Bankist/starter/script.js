@@ -255,6 +255,7 @@ btnSort.addEventListener('click', function (e) {
 let numLec = true;
 let convertAndCheckNumber = false;
 let mathAndRounding = false;
+let remainder = true;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float
@@ -335,4 +336,35 @@ if (numLec && mathAndRounding) {
   console.log((2.8).toFixed(3)); // 2.800
   console.log((2.346).toFixed(2)); // 2.35
   console.log(+(2.346).toFixed(2)); // 2.35
+}
+
+if (remainder && numLec) {
+  console.log(5 % 2);
+  console.log(5 / 2);
+
+  console.log(8 % 3);
+  console.log(8 / 3);
+
+  console.log(4 % 2);
+  console.log(4 / 2);
+
+  console.log(7 % 2);
+  console.log(7 / 2);
+
+  const isEven = n => n % 2 == 0;
+  console.log(isEven(4)); // true
+
+  labelBalance.addEventListener('click', function () {
+    [...document.querySelectorAll('.movements__row')].forEach(function (
+      row,
+      i
+    ) {
+      if (i % 2 === 0) {
+        row.style.backgroundColor = 'orange';
+      }
+      if (i % 3 === 0) {
+        row.style.backgroundColor = 'blue';
+      }
+    });
+  });
 }

@@ -206,7 +206,8 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  // get rid of the decimal part
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -252,7 +253,10 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 let numLec = true;
-if (numLec) {
+let convertAndCheckNumber = false;
+let mathAndRounding = false;
+
+if (numLec && convertAndCheckNumber) {
   // Number is float
   // console.log(23 == 23.0); //true
   console.log(0.1 + 0.2); // 0.30000000000000004
@@ -286,4 +290,49 @@ if (numLec) {
   console.log(Number.isFinite(2 / 0)); // false
 
   console.log(+'2x'); // NaN
+}
+
+if (numLec && mathAndRounding) {
+  console.log(Math.sqrt(25)); // 5
+  console.log(25 ** (1 / 2)); // 5
+  console.log(8 ** (1 / 3)); // 2
+
+  console.log(Math.max(2, 3, 1, 23, 10)); // 23
+  console.log(Math.max(2, 3, 1, '23', 10)); // 23 type coercion applies
+  console.log(Math.max(2, 3, 1, 23, '10px')); // NaN
+
+  console.log(Math.min(2, 3, 1, 23, 10)); // 1
+
+  console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+  console.log(Math.trunc(Math.random() * 5) + 1);
+
+  const randomInt = (min, max) =>
+    Math.floor(Math.random() * (max - min) + 1 + min);
+
+  console.log(randomInt(3, 10));
+
+  console.log(Math.round(23.23)); // 23
+  console.log(Math.round(23.8)); // 24
+
+  console.log(Math.ceil(23.23)); // 24
+  console.log(Math.ceil(23.9)); // 24
+
+  console.log(Math.floor(23.23)); // 23
+  console.log(Math.floor(23.9)); // 23
+
+  console.log(Math.trunc(23.23)); // 23
+  console.log(Math.trunc('23.9')); // 23
+
+  console.log(Math.trunc(-23.23)); // -23
+  console.log(Math.floor(-23.23)); // -24
+  console.log(Math.ceil(-23.23)); // -23
+
+  // Rounding Decimal
+  // toFixed returns a string
+  // the number indicates the number of decimal to keep
+  console.log((2.8).toFixed(0)); // 3
+  console.log((2.8).toFixed(3)); // 2.800
+  console.log((2.346).toFixed(2)); // 2.35
+  console.log(+(2.346).toFixed(2)); // 2.35
 }

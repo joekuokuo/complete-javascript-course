@@ -255,7 +255,8 @@ btnSort.addEventListener('click', function (e) {
 let numLec = true;
 let convertAndCheckNumber = false;
 let mathAndRounding = false;
-let remainder = true;
+let remainder = false;
+let bigInt = true;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float
@@ -367,4 +368,35 @@ if (remainder && numLec) {
       }
     });
   });
+}
+
+if (numLec && bigInt) {
+  console.log(2 ** 53 - 1);
+  console.log(Number.MAX_SAFE_INTEGER); // The biggest number that javascript can represent
+  console.log(2 ** 53 + 1); // Not accurate
+
+  // BigInt
+  console.log(1237891729381283081092803123n);
+  console.log(BigInt(1237891729381));
+
+  // operations
+  console.log(10000n + 10000n);
+  let num = 2;
+  let huge = 1237891729381283081092803123n;
+  // console.log(huge * num); // not working BigInt can't be mixed with other data type
+  console.log(huge * BigInt(num));
+  // console.log(Math.sqrt(16n)); // Won't work
+
+  // Exceptions
+  console.log(20n > 15); // true
+  console.log(20n === 20); // false
+  console.log(20n == 20); // true
+  console.log(typeof 20n);
+  console.log(typeof 20);
+
+  console.log(huge + ' BigInt'); // transform into strings
+
+  console.log(10n / 3n); // => 3n
+  // console.log(14n / 3); // can't mix BigInt and number
+  console.log(10 / 3); // => 3.3333
 }

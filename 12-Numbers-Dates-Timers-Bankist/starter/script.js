@@ -251,3 +251,39 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+let numLec = true;
+if (numLec) {
+  // Number is float
+  // console.log(23 == 23.0); //true
+  console.log(0.1 + 0.2); // 0.30000000000000004
+  console.log(0.1 + 0.2 === 0.3); // WERID false
+  // Note No scientific calculation in JS
+
+  console.log(Number('23')); // Number
+  console.log(+'23'); // Number
+
+  // Parsing: Only work if start with number
+  console.log(Number.parseInt('30px', 10)); // 30
+  console.log(Number.parseInt('px123', 10)); // NaN
+  console.log(Number.parseInt('100px', 2)); // 4 (in base 10)
+
+  console.log(Number.parseFloat('2.5px')); // 2.5
+  console.log(Number.parseInt('2.5px')); // 2
+  // Number provide a namespace
+
+  console.log(Number.isNaN(20)); // false
+  console.log('qwe', Number.isNaN('qwe')); // false
+
+  console.log(Number.isNaN('20')); // false
+  console.log(Number.isNaN(+'2x')); // true
+  console.log(Number.isNaN(2 / 0)); // false
+  // Note: Number.isNaN: true if the given value is NaN and its type is Number; otherwise, false.
+
+  // Checking if a value is a Number
+  // Number.isFinite is the best way to chech if a value is number
+  console.log(Number.isFinite(20)); // true
+  console.log(Number.isFinite('20')); // false
+  console.log(Number.isFinite(2 / 0)); // false
+
+  console.log(+'2x'); // NaN
+}

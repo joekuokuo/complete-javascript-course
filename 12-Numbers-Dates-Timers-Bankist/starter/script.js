@@ -256,7 +256,8 @@ let numLec = true;
 let convertAndCheckNumber = false;
 let mathAndRounding = false;
 let remainder = false;
-let bigInt = true;
+let bigInt = false;
+let dateTime = false;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float
@@ -399,4 +400,40 @@ if (numLec && bigInt) {
   console.log(10n / 3n); // => 3n
   // console.log(14n / 3); // can't mix BigInt and number
   console.log(10 / 3); // => 3.3333
+}
+
+if (numLec && dateTime) {
+  // create date
+  // 1.
+  const now = new Date();
+  console.log(now);
+
+  console.log(new Date('Mar 20 2021'));
+  console.log(new Date('April 30, 2021'));
+
+  console.log(new Date(account1.movementsDates[0]));
+  console.log(new Date(2020, 3, 30, 10, 10, 10)); // month is 0-index
+  console.log(new Date(0));
+  console.log(new Date(3 * 24 * 60 * 60 * 1000)); // 3 days later
+  // 259200000 is the result which is also the time stamp
+
+  // Working with dates
+  let future = new Date(2021, 3, 30, 10, 10, 10);
+  console.log(future);
+  console.log(future.getFullYear()); // 2021 -> year
+  console.log(future.getMonth()); // 3 -> month(0 based)
+  console.log(future.getDate()); // 30 -> day
+  console.log(future.getDay()); // 5 -> Friday -> weekday
+  console.log(future.getHours()); // 10 -> Friday -> weekday
+  console.log(future.getMinutes()); // 10 -> Friday -> weekday
+  console.log(future.getSeconds()); // 10 -> Friday -> weekday
+
+  console.log(future.toISOString()); // 2021-04-30T17:10:10.000Z
+  console.log(future.getTime()); // 1619802610000 time stamp
+  console.log(new Date(1619802610000));
+  console.log(Date.now()); // time now - time stamp
+
+  // setter
+  future.setFullYear(2030);
+  console.log(future);
 }

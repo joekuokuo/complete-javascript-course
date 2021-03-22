@@ -345,7 +345,7 @@ let bigInt = false;
 let dateTime = false;
 let dateOp = false;
 let IntlExample = false;
-let timeOut = true;
+let timeOut = false;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float

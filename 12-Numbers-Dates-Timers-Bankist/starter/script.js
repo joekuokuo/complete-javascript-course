@@ -81,21 +81,23 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementDate = date => {
+const formatMovementDate = (date, locale) => {
   const daysPassed = (d1, d2) =>
     Math.round(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24));
   const days = daysPassed(new Date(), date);
-  console.log(days);
+  // console.log(days);
 
   if (days === 0) return 'Today';
   if (days === 1) return 'Yesterday';
   if (days <= 7) return `${days} days ago`;
 
-  const day = `${date.getDate()}`.padStart(2, 0); // add padding for single day with 0
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
+  // const day = `${date.getDate()}`.padStart(2, 0); // add padding for single day with 0
+  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  // const year = date.getFullYear();
 
-  return `${day}/${month}/${year}`;
+  // return `${day}/${month}/${year}`;
+
+  return Intl.DateTimeFormat(locale).format(date);
 };
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -105,7 +107,7 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const date = new Date(acc.movementsDates[i]);
-    let displayDate = formatMovementDate(date);
+    let displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -197,14 +199,31 @@ btnLogin.addEventListener('click', function (e) {
 
     // Create current date
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0); // add padding for single day with 0
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      // weekday: 'short',
+    };
 
-    // day/month/year
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    // const locale = navigator.language;
+    // console.log(locale);
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
+
+    // const day = `${now.getDate()}`.padStart(2, 0); // add padding for single day with 0
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const min = `${now.getMinutes()}`.padStart(2, 0);
+
+    // // day/month/year
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -298,7 +317,7 @@ let mathAndRounding = false;
 let remainder = false;
 let bigInt = false;
 let dateTime = false;
-let dateOp = true;
+let dateOp = false;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float

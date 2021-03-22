@@ -99,6 +99,14 @@ const formatMovementDate = (date, locale) => {
 
   return Intl.DateTimeFormat(locale).format(date);
 };
+
+const formatCurrency = (value, locale, currency) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   let movements = acc.movements;
@@ -109,13 +117,15 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     let displayDate = formatMovementDate(date, acc.locale);
 
+    const formattedMov = formatCurrency(mov, acc.locale, acc.currency);
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -125,19 +135,28 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+
+  labelBalance.textContent = formatCurrency(
+    acc.balance,
+    acc.locale,
+    acc.currency
+  );
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCurrency(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCurrency(
+    Math.abs(out),
+    acc.locale,
+    acc.currency
+  );
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -147,7 +166,11 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCurrency(
+    interest,
+    acc.locale,
+    acc.currency
+  );
 };
 
 const createUsernames = function (accs) {
@@ -318,6 +341,7 @@ let remainder = false;
 let bigInt = false;
 let dateTime = false;
 let dateOp = false;
+let IntlExample = true;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float
@@ -506,4 +530,24 @@ if (numLec && dateOp) {
 
   const days1 = daysPassed(new Date(2030, 3, 10), new Date(2030, 3, 15));
   console.log(days1);
+}
+
+if (numLec && IntlExample) {
+  let num = 231223000.123;
+  let options = {
+    style: 'currency',
+    unit: 'celsius',
+    currency: 'EUR',
+    useGrouping: true,
+  };
+  // More details in MDN docs in Intl section
+  // style: unit, percent, currency
+  console.log('TW: ', new Intl.NumberFormat('zh-TW', options).format(num));
+  console.log('US: ', new Intl.NumberFormat('en-US', options).format(num));
+  console.log('GER: ', new Intl.NumberFormat('de-De', options).format(num));
+  console.log('Syria: ', new Intl.NumberFormat('ar-SY', options).format(num));
+  console.log(
+    navigator.language,
+    new Intl.NumberFormat(navigator.language, options).format(num)
+  );
 }

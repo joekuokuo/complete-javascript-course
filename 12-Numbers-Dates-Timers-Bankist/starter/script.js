@@ -291,12 +291,15 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    // Add transfer date
-    currentAccount.movementsDates.push(new Date().toISOString());
-    // Update UI
-    updateUI(currentAccount);
+    // Set a timer
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
+      // Add transfer date
+      currentAccount.movementsDates.push(new Date().toISOString());
+      // Update UI
+      updateUI(currentAccount);
+    }, 2000);
   }
   inputLoanAmount.value = '';
 });
@@ -341,7 +344,8 @@ let remainder = false;
 let bigInt = false;
 let dateTime = false;
 let dateOp = false;
-let IntlExample = true;
+let IntlExample = false;
+let timeOut = true;
 
 if (numLec && convertAndCheckNumber) {
   // Number is float
@@ -550,4 +554,35 @@ if (numLec && IntlExample) {
     navigator.language,
     new Intl.NumberFormat(navigator.language, options).format(num)
   );
+}
+
+if (numLec && timeOut) {
+  setTimeout(() => console.log('Here is your pizza!'), 2000);
+
+  let ingredients = ['Tomato', 'Cheese'];
+  const pizzaTimer = setTimeout(
+    (ing1, ing2) => console.log(`Here is your pizza with ${ing1}, ${ing2}!`),
+    3000,
+    ...ingredients
+  );
+  // The arguement after the time will become the argument to the handler function
+
+  console.log('Waiting!');
+
+  // Clear timer
+  if (ingredients.includes('Cheese')) {
+    clearTimeout(pizzaTimer);
+    console.log('Pizza canceled!');
+  }
+
+  // setInterval
+  setInterval(function () {
+    const now = new Date();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const second = now.getSeconds();
+
+    // console.log(now);
+    console.log(`${hour}:${min}:${second}`);
+  }, 1000);
 }
